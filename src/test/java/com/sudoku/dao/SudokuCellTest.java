@@ -35,6 +35,24 @@ public class SudokuCellTest {
     }
 
     @Test
+    public void testPreFilledCellRequiresValue() {
+        assertThatThrownBy(() -> new SudokuCell(0, 0, null, true))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Pre-filled cells must have a value");
+    }
+
+    @Test
+    public void testCellPositionBounds() {
+        assertThatThrownBy(() -> new SudokuCell(-1, 0, null, false))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Row must be between 0 and 8");
+
+        assertThatThrownBy(() -> new SudokuCell(0, 9, null, false))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Column must be between 0 and 8");
+    }
+
+    @Test
     public void testSetValue() {
         SudokuCell cell = new SudokuCell(0, 0, null, false);
         cell.setValue(7);
@@ -96,7 +114,7 @@ public class SudokuCellTest {
     }
 
     @Test
-    public void testValueBoundsNotEnforced() {
+    public void testValueBoundsAreEnforced() {
         SudokuCell cell = new SudokuCell(0, 0, null, false);
         assertThatThrownBy(() -> cell.setValue(0))
                 .isInstanceOf(IllegalArgumentException.class)

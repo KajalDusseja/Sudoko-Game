@@ -61,9 +61,8 @@ public class SudokuGameController {
             return "No empty cells to hint.";
         }
 
-        // Pick a random empty cell (use first half for variety)
         Random random = new Random();
-        int cellCount = emptyCells.length / 2; // Each cell is represented by 2 integers (row, col)
+        int cellCount = emptyCells.length / 2;
         int randomIndex = random.nextInt(cellCount);
         int row = emptyCells[randomIndex * 2];
         int col = emptyCells[randomIndex * 2 + 1];
