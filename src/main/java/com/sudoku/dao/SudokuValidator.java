@@ -41,8 +41,9 @@ public class SudokuValidator {
                 if (seen.contains(value)) {
                     // Return immediately to give user first error to fix
                     errors.add(new ValidationError(
-                            String.format("Number %d already exists in Row %s.", value, getRowLabel(row))
+                            String.format("Number %d already exists in Row %s. Hence, clearing the cell", value, getRowLabel(row))
                     ));
+                    cell.clear();
                     return errors;
                 }
                 seen.add(value);
@@ -61,8 +62,9 @@ public class SudokuValidator {
                 int value = cell.getValue();
                 if (seen.contains(value)) {
                     errors.add(new ValidationError(
-                            String.format("Number %d already exists in Column %d.", value, column + 1)
+                            String.format("Number %d already exists in Column %d. Hence, clearing the cell", value, column + 1)
                     ));
+                    cell.clear();
                     return errors;
                 }
                 seen.add(value);
@@ -81,8 +83,9 @@ public class SudokuValidator {
                 int value = cell.getValue();
                 if (seen.contains(value)) {
                     errors.add(new ValidationError(
-                            "Number " + value + " already exists in the same 3×3 subgrid."
+                            "Number " + value + " already exists in the same 3×3 subgrid. Hence, clearing the cell"
                     ));
+                    cell.clear();
                     return errors;
                 }
                 seen.add(value);
