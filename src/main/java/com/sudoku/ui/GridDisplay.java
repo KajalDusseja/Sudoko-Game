@@ -10,7 +10,7 @@ public class GridDisplay {
         StringBuilder sb = new StringBuilder();
 
         // Column headers (1-9)
-        sb.append("    1 2 3 4 5 6 7 8 9\n");
+        sb.append("    1 2 3  4 5 6  7 8 9\n");
 
         // Grid rows
         for (int i = 0; i < 9; i++) {

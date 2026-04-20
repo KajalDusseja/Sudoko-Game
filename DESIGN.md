@@ -28,7 +28,7 @@ The application is structured using layered architecture with clear separation o
 
 1. **Single Responsibility Principle (SRP)**
    - Each class has one clear responsibility
-   - `SudokuValidator` Validates duplicates and modifies the cell state if needs clearing
+   - `SudokuValidator` Validates duplicates and doesn't modify state
    - `PuzzleGenerator` only generates puzzles
 
 2. **Open/Closed Principle (OCP)**
