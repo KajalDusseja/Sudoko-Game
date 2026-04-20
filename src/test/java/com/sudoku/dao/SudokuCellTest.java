@@ -98,12 +98,17 @@ public class SudokuCellTest {
     @Test
     public void testValueBoundsNotEnforced() {
         SudokuCell cell = new SudokuCell(0, 0, null, false);
-        cell.setValue(0);
-        assertThat(cell.getValue()).isEqualTo(0);
-        cell.setValue(10);
-        assertThat(cell.getValue()).isEqualTo(10);
-        cell.setValue(-5);
-        assertThat(cell.getValue()).isEqualTo(-5);
+        assertThatThrownBy(() -> cell.setValue(0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value must be between 1 and 9");
+        
+        assertThatThrownBy(() -> cell.setValue(10))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value must be between 1 and 9");
+
+        assertThatThrownBy(() -> cell.setValue(-5))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Value must be between 1 and 9");
     }
 
     // This test ensures the flag is preserved through operations

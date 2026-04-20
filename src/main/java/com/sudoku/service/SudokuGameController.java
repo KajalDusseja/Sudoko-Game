@@ -63,7 +63,8 @@ public class SudokuGameController {
 
         // Pick a random empty cell (use first half for variety)
         Random random = new Random();
-        int randomIndex = random.nextInt(emptyCells.length / 2);
+        int cellCount = emptyCells.length / 2; // Each cell is represented by 2 integers (row, col)
+        int randomIndex = random.nextInt(cellCount);
         int row = emptyCells[randomIndex * 2];
         int col = emptyCells[randomIndex * 2 + 1];
 

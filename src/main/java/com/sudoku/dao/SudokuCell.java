@@ -22,6 +22,8 @@ public class SudokuCell {
     public void setValue(Integer value) {
         if (preFilled) {
             throw new IllegalStateException("Cannot modify a pre-filled cell");
+        } else if(value != null && (value < 1 || value > 9)) {
+            throw new IllegalArgumentException("Value must be between 1 and 9");
         }
         this.value = value;
     }
