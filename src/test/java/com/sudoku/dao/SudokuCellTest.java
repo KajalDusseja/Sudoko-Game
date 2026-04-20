@@ -88,4 +88,31 @@ public class SudokuCellTest {
         copy.setValue(8);
         assertThat(original.getValue()).isEqualTo(5);
     }
+
+    @Test
+    public void testIsEmptyOnPreFilledCell() {
+        SudokuCell cell = new SudokuCell(0, 0, 5, true);
+        assertThat(cell.isEmpty()).isFalse();
+    }
+
+    @Test
+    public void testValueBoundsNotEnforced() {
+        SudokuCell cell = new SudokuCell(0, 0, null, false);
+        cell.setValue(0);
+        assertThat(cell.getValue()).isEqualTo(0);
+        cell.setValue(10);
+        assertThat(cell.getValue()).isEqualTo(10);
+        cell.setValue(-5);
+        assertThat(cell.getValue()).isEqualTo(-5);
+    }
+
+    // This test ensures the flag is preserved through operations
+    @Test
+    public void testPreFilledFlagImmutability() {
+        SudokuCell cell = new SudokuCell(0, 0, 5, true);
+        assertThat(cell.isPreFilled()).isTrue();
+        assertThatThrownBy(cell::clear)
+                .isInstanceOf(IllegalStateException.class);
+        assertThat(cell.isPreFilled()).isTrue();
+    }
 }
